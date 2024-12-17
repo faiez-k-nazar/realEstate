@@ -1,3 +1,5 @@
+import userRouter from './Routes/user.Route'
+
 require('dotenv').config()
 
 const express = require('express')
@@ -5,6 +7,9 @@ const express = require('express')
 const cors = require('cors')
 
 const db = require('./DB/Connection')
+
+const userRouter = require('./Routes/user.Route')
+
 
 const reServer = express()
 
@@ -21,3 +26,6 @@ reServer.listen(PORT,()=>{
 reServer.get('/',(req,res)=>{
     res.send("welcome to server")
 })
+
+reServer.use("/re-backend/user",userRouter)
+
