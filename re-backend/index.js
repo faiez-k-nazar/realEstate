@@ -15,8 +15,8 @@ const reServer = express()
 
 reServer.use(cors())
 reServer.use(express.json())
-reServer.use(userRouter)
-reServer.use(authrouter)
+reServer.use('/api/user',userRouter)
+reServer.use('/api/auth',authrouter)
 reServer.use(express.json())
 
 const PORT = 3000 || process.env.PORT
@@ -31,12 +31,13 @@ reServer.get('/',(req,res)=>{
 })
 
 reServer.use((err,req,res,next)=>{
-const statusCode=err.statusCde || 500;
+const statusCode=err.statusCode || 500;
 const message = err.message || "internal server errorr"
 return res.status(statusCode).json({
     success:false,
-    message,
     statusCode,
+    message,
+  
 
 })
 })
