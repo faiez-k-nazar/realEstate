@@ -11,12 +11,15 @@ const userRouter = require('./Routes/router')
 
 const authrouter = require('./Routes/authRouter')
 
+const signInRouter = require('./Routes/signInRoute')
+
 const reServer = express()
 
 reServer.use(cors())
 reServer.use(express.json())
 reServer.use('/api/user',userRouter)
 reServer.use('/api/auth',authrouter)
+reServer.use('/api/auth',signInRouter)
 reServer.use(express.json())
 
 const PORT = 3000 || process.env.PORT
